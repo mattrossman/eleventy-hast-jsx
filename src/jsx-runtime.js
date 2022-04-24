@@ -7,8 +7,8 @@ const processChildren = require("./process-children");
  * @param {string | ((props: object) => unknown)} type
  * @param {any} param1
  */
-const jsx = (type, { children: rawChildren, ...props }) => {
-  const children = processChildren(rawChildren);
+const jsx = async (type, { children: rawChildren, ...props }) => {
+  const children = await Promise.all(processChildren(rawChildren));
   if (typeof type === "string") {
     return h(type, props, ...children);
   } else if (typeof type === "function") {

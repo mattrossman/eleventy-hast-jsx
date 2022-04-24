@@ -1,6 +1,6 @@
 /**
  * @param {any[]} children
- * @returns {import("hast").Node[]}
+ * @returns {Promise<import("hast").Node>[]}
  */
 const processChildren = (children) =>
   [children]
