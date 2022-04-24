@@ -3,4 +3,4 @@ exports.data = {
   title: "Test Page",
 };
 
-exports.default = () => <p>Hello, world!</p>;
+exports.render = () => <p>Hello, world!</p>;

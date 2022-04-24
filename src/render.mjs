@@ -8,7 +8,11 @@ export const createRenderer =
     /** @type {import('./types').PluginOptions['htmlOptions']} */ htmlOptions
   ) =>
   async (/** @type {unknown} */ data) => {
-    const hast = await instance.default(data);
+    let renderFn = instance.default;
+    renderFn ??= instance.render;
+    renderFn ??= instance;
+
+    const hast = await renderFn(data);
 
     return toHtml(
       {
