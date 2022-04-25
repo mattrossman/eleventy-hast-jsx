@@ -49,7 +49,7 @@ module.exports = (
           `Module for path '${inputPath}' was not loaded before compiling`
         );
 
-      return createRenderer(instance, htmlOptions);
+      return createRenderer(instance, htmlOptions, eleventyConfig);
     },
 
     compileOptions: {

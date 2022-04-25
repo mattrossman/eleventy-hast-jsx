@@ -5,14 +5,16 @@ import { toHtml } from "hast-util-to-html";
 export const createRenderer =
   (
     /** @type {any} */ instance,
-    /** @type {import('./types').PluginOptions['htmlOptions']} */ htmlOptions
+    /** @type {import('./types').PluginOptions['htmlOptions']} */ htmlOptions,
+    /** @type {import('@11ty/eleventy/src/UserConfig')} */ eleventyConfig
   ) =>
   async (/** @type {unknown} */ data) => {
+    /** @type {(data: unknown) => (import('hast').RootContent | import('hast').RootContent[])} */
     let renderFn = instance.default;
     renderFn ??= instance.render;
     renderFn ??= instance;
 
-    const hast = await renderFn(data);
+    const hast = await renderFn.call(eleventyConfig.javascriptFunctions, data);
 
     return toHtml(
       {
